@@ -43,6 +43,12 @@ public class FolderDao {
         }
     }
 
+//    public void move(int id, int parent_id){
+//        Session session = this.sessionFactory.getCurrentSession();
+//        Folder folder;
+//        folder = session.c
+//    }
+
     @SuppressWarnings("unchecked")
     public List<Folder> folderList() {
         Session session = this.sessionFactory.getCurrentSession();

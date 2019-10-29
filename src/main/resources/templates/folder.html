@@ -26,6 +26,7 @@
      <tbody>
      <li th:each="folder : ${folderList}">
          <td th:utext="${folder.id}">..</td>
+         <td th:utext="${folder.name}">..</td>
          <td th:utext="${folder.parent_id}">..</td>
          <td th:utext="${folder.child_id}">..</td>
          <td th:utext="${folder.depth}">..</td>
