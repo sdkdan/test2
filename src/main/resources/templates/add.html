@@ -1,0 +1,34 @@
+<! DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+
+</head>
+<body>
+<th:block th:include="/menu"></th:block>
+<div class="container">
+
+
+    <h1>Форма для вставки новых папок</h1>
+    <!-- форма -->
+    <form action="#" th:action="@{/folder/add}" th:object="${folder}" method="post">
+        <div class="form-group">
+            <label>Parent_id</label>
+            <input type="text" class="form-control" th:field="*{parent_id}" placeholder="Обязательное поле">
+        </div>
+        <div class="form-group">
+            <label>Child_id</label>
+            <input type="text" class="form-control" th:field="*{child_id}" placeholder="Обязательное поле">
+        </div>
+        <div class="form-group">
+            <label>Depth</label>
+            <input type="text" class="form-control" th:field="*{depth}" placeholder="Обязательное поле">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+</div>
+</body>
+</html>
