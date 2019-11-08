@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<th:block th:include="/menu"></th:block>
+<h1>Редактирование папки</h1>
+<form action="#" th:action="@{/folder/{id}/update (id=${folder.id})}" th:object="${folder}" method="post">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" th:field="*{name}" placeholder="Обязательное поле">
+    </div>
+    <!--<div class="form-group">-->
+        <!--<label>Parent Id</label>-->
+        <!--<input type="text" class="form-control" th:field="*{parent_id}" placeholder="Обязательное поле">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+        <!--<label>Child Id</label>-->
+        <!--<input type="text" class="form-control" th:field="*{child_id}" placeholder="Обязательное поле">-->
+    <!--</div>-->
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+</html>

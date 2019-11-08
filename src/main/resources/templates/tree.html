@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Menu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:fragment="submenu (menu, depth)" >
+    <ul th:if="${not #lists.isEmpty(menu.children)}" th:class="${#objects.nullSafe(depth, 1) &gt; 1}? 'children'">
+        <li th:each="child : ${menu.children}">
+            <span th:if="${#strings.isEmpty(child.actionUri)}" th:text="${child.displayLabel}">Addons</span>
+            <a th:if="${not #strings.isEmpty(child.actionUri)}" th:href="${child.actionUri}" th:text="${child.displayLabel}">Link Item</a>
+            <div th:replace="fragments/submenu :: submenu(menu=${child}, depth=${depth+1})"  />        </li>
+    </ul>
+</div>
+</body>
+</html>
