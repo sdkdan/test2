@@ -3,6 +3,7 @@ package com.example.demo;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -47,14 +48,41 @@ public class FolderDao {
 //        Session session = this.sessionFactory.getCurrentSession();
 //        Folder folder;
 //        folder = session.c
-//    }
+//    }"
+
 
     @SuppressWarnings("unchecked")
     public List<Folder> folderList() {
         Session session = this.sessionFactory.getCurrentSession();
-        List<Folder> folderList = (List<Folder>) session.createQuery("From Folder").list();
+        List<Folder> folderList;
+        folderList = (List<Folder>) session.createQuery("From Folder").list();
         return folderList;
 
+    }
+
+    public List<Integer> childFolderList(int id){
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Integer> childfolderList;
+        List<Integer> childfolderList1;
+        String queryString = "SELECT child_id FROM Closure WHERE parent_id = :id";
+    //    String queryString1 = "SELECT WHERE id IN (:children)";
+        Query query = session.createQuery(queryString);
+//        Query query1 = session.createQuery(queryString1);
+        query.setParameter(id, id);
+        childfolderList = query.list();
+    //    childfolderList1 = query.list();
+        //childfolderList = (List<Integer>) session.createQuery("SELECT child_id FROM Closure_table WHERE parent_id = :id INNER JOIN (SELECT WHERE id IN (:children))").list();
+        return childfolderList;
+    }
+
+    public List<Integer>  parentList(int id){
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Integer> parentList;
+        String queryString = "SELECT parent_id FROM Closure WHERE child_id = :id ORDER BY depth";
+        Query query = session.createQuery(queryString);
+        query.setParameter(id, id);
+        parentList = query.list();
+        return parentList;
     }
 
 }

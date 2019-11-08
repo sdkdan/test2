@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<section th:fragment="category" xmlns:th="http://www.w3.org/1999/xhtml">
+    <ul>
+        <li th:each="cat : ${maincategories}">
+            <span th:text="${cat.name}">Main Cat</span>
+            <section th:include="@{categoryFragment} :: category" th:with="maincategories=${cat.getChildren()}"></section>
+        </li>
+    </ul>
+</section>

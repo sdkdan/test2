@@ -3,6 +3,8 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.demo.Folder;
+import com.example.demo.FolderDao;
 
 import java.util.List;
 
@@ -45,4 +47,16 @@ public class FolderService {
     public List<Folder> folderList() {
         return this.folderDao.folderList();
     }
+
+    @Transactional
+    public List<Integer> parentfolderList(int id) {
+        return this.folderDao.parentList(id);
+    }
+
+    @Transactional
+    public List<Integer> childfolderList(int id) {
+        return this.folderDao.childFolderList(id);
+    }
+
+
 }

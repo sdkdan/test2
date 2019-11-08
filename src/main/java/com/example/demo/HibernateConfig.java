@@ -26,7 +26,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-        sessionFactory.setPackagesToScan ("com.example.demo;");
+        sessionFactory.setPackagesToScan ("com.example.demo");
         Properties props = new Properties();
         props.setProperty("dialect",
                 "org.hibernate.dialect.MySQLDialect");

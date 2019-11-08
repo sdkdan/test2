@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="">
 <head>
-    <title>Getting Started: Serving Web Content</title>
     <meta charset="utf-8">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
-    <!--<link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
 </head>
 
 <body>
@@ -17,29 +14,91 @@
      <thead>
      <tr>
          <th>id </th>
-         <th>parent_id</th>
-         <th>child_id</th>
-         <th>depth</th>
-
+         <th>name </th>
+         <!--<th>parent_id</th>-->
+         <!--<th>child_id</th>-->
+         <!--<th>depth</th>-->
      </tr>
      </thead>
      <tbody>
-     <li th:each="folder : ${folderList}">
+     <tr  th:each="folder : ${folderList}">
          <td th:utext="${folder.id}">..</td>
-         <td th:utext="${folder.name}">..</td>
-         <td th:utext="${folder.parent_id}">..</td>
-         <td th:utext="${folder.child_id}">..</td>
-         <td th:utext="${folder.depth}">..</td>
+         <!--<td id="myDiv" th:onclick="'javascript:setTimeout()'" th:utext="${folder.name}">..</td>-->
+         <td id="demo" th:utext="${folder.name}">..</td>
+         <!--<td th:utext="${folder.parent_id}">..</td>-->
+         <!--<td th:utext="${folder.child_id}">..</td>-->
+         <!--<td th:utext="${folder.depth}">..</td>-->
+         <td> <a id="demo" th:href="@{folder/{id}/delete(id=${folder.id})}">  Delete </a></td>
+         <td> <a id="demo" th:href="@{folder/{id}/edit(id=${folder.id})}">  Edit </a></td>
+         <!--<td> <a th:href="@{folder/{id}/edit(id=${folder.id})}"> <Изменить </a></td>-->
          <td>
-             <div class="text-center">
-                 <a th:href="@{person/{id}/delete(id=${person.id_person})}"> Удалить</a>
-                 <a th:href="@{person/{id}/edit(id=${person.id_person})}">Переместить</a>
-                 <a th:href="@{person/{id}(id=${person.id_person})}">Посмотреть вложенные</a>
-             </div>
+             <!--&lt;!&ndash;<div class="text-center">&ndash;&gt;-->
+                 <!--&lt;!&ndash;<a th:href="@{person/{id}/delete(id=${person.id_person})}"> Удалить</a>&ndash;&gt;-->
+                 <!--&lt;!&ndash;<a th:href="@{person/{id}/edit(id=${person.id_person})}">Переместить</a>&ndash;&gt;-->
+                 <!--&lt;!&ndash;<a th:href="@{person/{id}(id=${person.id_person})}">Посмотреть вложенные</a>&ndash;&gt;-->
+             <!--&lt;!&ndash;</div>&ndash;&gt;-->
          </td>
-     </li>
+     </tr>
      </tbody>
  </table>
+ <!--<button id="changeRed">Change Font Color Green</button>-->
+ <!--<button th:onclick="'javascript:sayHello(\'hello\')'">Say Hello</button>-->
+ <!--<input type = "button" value = "Show image for 5 seconds" onclick = "show()"><br><br>-->
+ <!--<div id = "myDiv"><img  id = "myImage" src = "images/ajax-load.gif"></div><br>-->
+ <!--<button type = "button" value = "Show image for 5 seconds" th:onclick = "show()"><br><br>-->
+ <!--<div id = "myDiv"><img  id = "myImage" src = "images/ajax-load.gif"></div><br>-->
+     <!--<input th:type="submit" th:value="Submit" th:onclick="validate()" th:name="myButton" id="myButton">-->
+     <!--<img th:style="display: none" src="images/91.gif" id="myImage">-->
+ <script th:inline="javascript">
+     function  changeColor() {
+         document.getElementById("demo").style.color = "red";
+     }
+     // document.getElementById("changeRed").onclick = function() {
+     //     document.getElementById("output").style.color = 'red';
+     // }
+     // function sayHello(text) {
+     //     alert(text);
+     // }
+     setTimeout(function(){
+         document.getElementById("myDiv").style.display="none";
+     }, 2000);
+
+     function validate(){
+
+         var myButton= document.getElementById('myButton');
+         var myImage= document.getElementById('myImage');
+
+         myButton.style.display ='none';
+         myImage.style.display ='inline';
+
+         setTimeout (function(){
+             myButton.style.display ='inline';
+             myImage.style.display ='none';
+         },5000);
+
+     }
+ </script> 
+
+ <!--<section layout:include="@{menuFragment} :: menu" th:with="menuItemsList=${rootMenuItemAsList}"></section>-->
+     <!--<div th:fragment="submenu">-->
+         <!--<ul>-->
+             <!--<li th:each="cat : ${categories}">-->
+                 <!--<span th:text="${cat.name}"></span>-->
+                 <!--<div th:with="categories = ${cat.children}" th:include="admin/fragments/info :: submenu"></div>-->
+             <!--</li>-->
+         <!--</ul>-->
+     <!--</div>-->
+ <!--<section layout:include="@{menuFragment} :: menu" th:with="menuItemsList=${rootMenuItemAsList}"></section>-->
+
+
+ <!--<div th:fragment="submenu">-->
+     <!--<ul>-->
+         <!--<li th:each="cat : ${categories}">-->
+             <!--<span th:text="${cat.categoryName}"></span>-->
+             <!--<div th:with="categories = ${cat.children}" th:include=" :: submenu"></div>-->
+         <!--</li>-->
+     <!--</ul>-->
+ <!--</div>-->
 
 </body>
 </html>
